@@ -4,15 +4,15 @@ This project is a Python-based system for scraping Threads posts by keyword, sto
 
 It is designed for reliability, human-like browser automation, anti-detection behavior, and seamless integration with GCP.
 
-***✨ Key Features***
+***✨ Key Features***<br />
+<br />
 
-
-***☁️ Google Cloud Integration***
-
+***☁️ Google Cloud Integration***<br />
+<br />
 Automatically uploads scraped data to a Google Cloud Storage (GCS) bucket in .jsonl format, with filenames including both the keyword and date:
 
-jpn/threads_{keyword}_{date}.jsonl
-
+jpn/threads_{keyword}_{date}.jsonl<br />
+<br />
 
 ***🛡️ Anti-Detection Scraping***
 
@@ -37,8 +37,8 @@ Randomized delays between navigation, typing, and clicking
 
 Character-by-character typing with variable speed
 
-Natural scrolling patterns with pauses to mimic reading behavior
-
+Natural scrolling patterns with pauses to mimic reading behavior<br />
+<br />
 
 ***🎯 Targeted Keyword Scraping***
 
@@ -53,8 +53,8 @@ Searches Threads
 
 Scrolls and loads content
 
-Captures up to TARGET_POSTS_NUM posts (default = 100)
-
+Captures up to TARGET_POSTS_NUM posts (default = 100)<br />
+<br />
 
 ***🛠️ Robust Scraping Pipeline***
 
@@ -72,8 +72,8 @@ Each post is saved as a structured JSON object:
     "content": "<scraped text>",
     "acquired_at": "<timestamp>",
     "in_out": "<category>"
-}
-
+}<br />
+<br />
 
 ***📊 NEW: Embedding Visualization Pipeline (PCA + UMAP)***
 
@@ -101,8 +101,8 @@ semantic similarity
 
 how keywords cluster
 
-model embedding quality over time
-
+model embedding quality over time<br />
+<br />
 
 ***✅ Prerequisites***
 
@@ -116,8 +116,8 @@ A GCS bucket
 
 A Google Service Account JSON credentials file
 
-A working Threads account (for scraping)
-
+A working Threads account (for scraping)<br />
+<br />
 
 ***⚙️ Installation***
 
@@ -146,8 +146,8 @@ umap-learn
 
 scikit-learn
 
-numpy
-
+numpy<br />
+<br />
 
 ***📝 Configuration***
 
@@ -190,8 +190,8 @@ Perform PCA + UMAP
 
 Generate plots
 
-Optionally save visualization outputs
-
+Optionally save visualization outputs<br />
+<br />
 
 ***📁 Project Structure***
 threads_GCP/
@@ -200,14 +200,14 @@ threads_GCP/
  ├── requirements.txt       # Python dependencies
  ├── README.md              # Project documentation
  ├── utils/                 # Helper modules
- └── data/                  # Temporary storage / artifacts
-
+ └── data/                  # Temporary storage / artifacts<br />
+<br />
 
 ***📄 License***
 
 This project is licensed under the Apache License 2.0.
-See the LICENSE file for details.
-
+See the LICENSE file for details.<br />
+<br />
 ***⚠️ Disclaimer***
 
 This tool is intended for educational and research purposes.
