@@ -2,8 +2,8 @@
 
 This project is a Python-based system for scraping Threads posts by keyword, storing them in Google Cloud Storage, and visualizing embeddings using PCA + UMAP for cluster inspection and qualitative analysis.
 
-It is designed for reliability, human-like browser automation, anti-detection behavior, and seamless integration with GCP.
-
+It is designed for reliability, human-like browser automation, anti-detection behavior, and seamless integration with GCP.<br />
+****
 ***✨ Key Features***<br />
 <br />
 
