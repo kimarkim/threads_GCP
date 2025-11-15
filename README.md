@@ -3,17 +3,17 @@
 This project is a Python-based system for scraping Threads posts by keyword, storing them in Google Cloud Storage, and visualizing embeddings using PCA + UMAP for cluster inspection and qualitative analysis.
 
 It is designed for reliability, human-like browser automation, anti-detection behavior, and seamless integration with GCP.
-&nbsp;
-&nbsp;
+
 ***✨ Key Features***
-&nbsp;
+
+
 ***☁️ Google Cloud Integration***
-&nbsp;
+
 Automatically uploads scraped data to a Google Cloud Storage (GCS) bucket in .jsonl format, with filenames including both the keyword and date:
 
 jpn/threads_{keyword}_{date}.jsonl
-&nbsp;
-&nbsp;
+
+
 ***🛡️ Anti-Detection Scraping***
 
 Built to minimize the risk of automated scraping detection:
@@ -201,6 +201,7 @@ threads_GCP/
  ├── README.md              # Project documentation
  ├── utils/                 # Helper modules
  └── data/                  # Temporary storage / artifacts
+
 
 ***📄 License***
 
