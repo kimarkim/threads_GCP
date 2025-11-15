@@ -10,11 +10,14 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
+#"韓国", "Kポ", "韓国旅行","韓国ファッション",
+#"韓国", "Kポ", "韓国旅行","韓国ファッション","韓国コスメ","韓国グルメ",
+
 # --- Configuration ---
 USERNAME = os.environ.get('THREADS_USERNAME')
 PASSWORD = os.environ.get('THREADS_PASSWORD')
-TARGET_KEYWORD = ["韓国", "Kポ", "韓国旅行","韓国ファッション","韓国コスメ","韓国グルメ","韓国語","韓国留学","韓国生活"]
-TARGET_POSTS_NUM = 100
+TARGET_KEYWORD = ["韓国", "Kポ", "韓国旅行","韓国ファッション","韓国コスメ","韓国グルメ","韓国語","韓国生活"]
+TARGET_POSTS_NUM = 500
 BUCKET_NAME = os.environ.get('BUCKET_NAME')
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.environ.get('GCP_CREDENTIALS')
