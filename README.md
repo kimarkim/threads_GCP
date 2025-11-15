@@ -1,17 +1,20 @@
-🚀 Threads Keyword Scraper + Embedding Visualization (GCP Integrated)
+***🚀 Threads Keyword Scraper + Embedding Visualization (GCP Integrated)***
 
 This project is a Python-based system for scraping Threads posts by keyword, storing them in Google Cloud Storage, and visualizing embeddings using PCA + UMAP for cluster inspection and qualitative analysis.
 
 It is designed for reliability, human-like browser automation, anti-detection behavior, and seamless integration with GCP.
 
-✨ Key Features
-☁️ Google Cloud Integration
+
+***✨ Key Features***
+
+***☁️ Google Cloud Integration***
 
 Automatically uploads scraped data to a Google Cloud Storage (GCS) bucket in .jsonl format, with filenames including both the keyword and date:
 
 jpn/threads_{keyword}_{date}.jsonl
 
-🛡️ Anti-Detection Scraping
+
+***🛡️ Anti-Detection Scraping***
 
 Built to minimize the risk of automated scraping detection:
 
@@ -25,7 +28,8 @@ Random viewport sizes
 
 Natural mouse movement + interaction timing
 
-🤖 Human-Like Interaction
+
+***🤖 Human-Like Interaction***
 
 The scraper simulates real user behavior:
 
@@ -35,7 +39,8 @@ Character-by-character typing with variable speed
 
 Natural scrolling patterns with pauses to mimic reading behavior
 
-🎯 Targeted Keyword Scraping
+
+***🎯 Targeted Keyword Scraping***
 
 Scrapes posts for a customizable list of keywords, such as:
 
@@ -50,7 +55,8 @@ Scrolls and loads content
 
 Captures up to TARGET_POSTS_NUM posts (default = 100)
 
-🛠️ Robust Scraping Pipeline
+
+***🛠️ Robust Scraping Pipeline***
 
 Selenium handles browser automation
 
@@ -68,7 +74,8 @@ Each post is saved as a structured JSON object:
     "in_out": "<category>"
 }
 
-📊 NEW: Embedding Visualization Pipeline (PCA + UMAP)
+
+***📊 NEW: Embedding Visualization Pipeline (PCA + UMAP)***
 
 This repo now includes a full embedding visualization pipeline (visualization_emb.py) that:
 
@@ -96,7 +103,8 @@ how keywords cluster
 
 model embedding quality over time
 
-✅ Prerequisites
+
+***✅ Prerequisites***
 
 You will need:
 
@@ -110,7 +118,8 @@ A Google Service Account JSON credentials file
 
 A working Threads account (for scraping)
 
-⚙️ Installation
+
+***⚙️ Installation***
 
 Clone the repository:
 
@@ -139,7 +148,8 @@ scikit-learn
 
 numpy
 
-📝 Configuration
+
+***📝 Configuration***
 
 Create a .env file in the root of the project:
 
@@ -182,7 +192,8 @@ Generate plots
 
 Optionally save visualization outputs
 
-📁 Project Structure
+
+***📁 Project Structure***
 threads_GCP/
  ├── main.py                # Scraper logic
  ├── visualization_emb.py   # PCA+UMAP visualization pipeline
@@ -191,12 +202,12 @@ threads_GCP/
  ├── utils/                 # Helper modules
  └── data/                  # Temporary storage / artifacts
 
-📄 License
+***📄 License***
 
 This project is licensed under the Apache License 2.0.
 See the LICENSE file for details.
 
-⚠️ Disclaimer
+***⚠️ Disclaimer***
 
 This tool is intended for educational and research purposes.
 Please:
