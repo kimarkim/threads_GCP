@@ -1,222 +1,156 @@
-***🚀 Threads Keyword Scraper + Embedding Visualization (GCP Integrated)***
+# 🚀 Threads Keyword Scraper + Embedding Visualization (GCP Enabled)
 
-This project is a Python-based system for scraping Threads posts by keyword, storing them in Google Cloud Storage, and visualizing embeddings using PCA + UMAP for cluster inspection and qualitative analysis.
+- A Python system for scraping Threads posts by keyword, storing results in Google Cloud Storage, and visualizing text embeddings using PCA + UMAP for clustering and qualitative analysis.
+- Built for reliability, human-like automation, and seamless GCP integration.
 
-It is designed for reliability, human-like browser automation, anti-detection behavior, and seamless integration with GCP.<br />
-****
-***✨ Key Features***<br />
-<br />
+# ✨ Features
+**☁️ Google Cloud Storage Integration**
 
-***☁️ Google Cloud Integration***<br />
-<br />
-Automatically uploads scraped data to a Google Cloud Storage (GCS) bucket in .jsonl format, with filenames including both the keyword and date:
+- Automatically uploads scraped posts to GCS as .jsonl:
 
-jpn/threads_{keyword}_{date}.jsonl<br />
-<br />
+- jpn/threads_{keyword}_{date}.jsonl
 
-***🛡️ Anti-Detection Scraping***
+# 🛡️ Anti-Detection Scraping
 
-Built to minimize the risk of automated scraping detection:
+- Designed to mimic real browser behavior:
 
-Randomized User-Agent pool
+- Randomized User-Agent pool
 
-Disabled Selenium automation flags
+- Selenium automation flags disabled
 
-Suppression of navigator.webdriver
+- navigator.webdriver suppressed
 
-Random viewport sizes
+- Variable viewport sizes
 
-Natural mouse movement + interaction timing
-&nbsp;
-&nbsp;
-***🤖 Human-Like Interaction***
+- Natural mouse movement and timing
 
-The scraper simulates real user behavior:
+# 🤖 Human-Like Interaction
 
-Randomized delays between navigation, typing, and clicking
+- Randomized delays for navigation, typing, and clicking
 
-Character-by-character typing with variable speed
+- Character-by-character text entry
 
-Natural scrolling patterns with pauses to mimic reading behavior<br />
-<br />
+- Natural scrolling with pauses
 
-***🎯 Targeted Keyword Scraping***
+# 🎯 Keyword-Based Scraping
 
-Scrapes posts for a customizable list of keywords, such as:
+- Scrapes posts for a customizable keyword list (e.g., 韓国, K-POP, 韓国旅行).
 
-韓国, Kポ, 韓国旅行, K-POP, 韓国ドラマ, など
 
+**For each keyword, the scraper:**
 
-For each keyword:
+- Searches Threads
 
-Searches Threads
+- Loads more results by scrolling
 
-Scrolls and loads content
+- Captures up to TARGET_POSTS_NUM posts (default: 100)
 
-Captures up to TARGET_POSTS_NUM posts (default = 100)<br />
-<br />
+- Each post is saved as structured JSON:
 
-***🛠️ Robust Scraping Pipeline***
+**{
+  "id": "<hashed-id>",
+  "genre": "<keyword>",
+  "content": "<text>",
+  "acquired_at": "<timestamp>",
+  "in_out": "<category>"
+}**
 
-Selenium handles browser automation
+# 📊 Embedding Visualization (PCA + UMAP)
 
-BeautifulSoup parses DOM content
+- visualization_emb.py provides a complete embedding analysis workflow:
 
-HTML is processed to extract text reliably
+- Loads embeddings from BigQuery
 
-Each post is saved as a structured JSON object:
+- Applies PCA for initial dimensionality reduction
 
-{
-    "id": "<hashed-unique-id>",
-    "genre": "<keyword>",
-    "content": "<scraped text>",
-    "acquired_at": "<timestamp>",
-    "in_out": "<category>"
-}<br />
-<br />
+- Applies UMAP for 2D visualization
 
-***📊 NEW: Embedding Visualization Pipeline (PCA + UMAP)***
+**Generates plots for:**
 
-This repo now includes a full embedding visualization pipeline (visualization_emb.py) that:
+- Cluster structure
 
-Loads embeddings from BigQuery
+- Outlier detection
 
-Runs PCA for initial reduction
+- Keyword similarity
 
-Applies UMAP for high-quality 2D visualization
+- Model drift analysis
 
-Produces scatterplots for:
+- Useful for understanding semantic patterns and monitoring embedding quality.
 
-cluster separation
+# ✅ Requirements
 
-outlier detection
+- Python 3.x
 
-qualitative comparison
+- Google Cloud project + GCS bucket
 
-model version drift analysis
+- Service Account JSON key
 
-Useful for understanding:
+- Threads account (for login)
 
-semantic similarity
+# ⚙️ Installation
+- git clone https://github.com/kimarkim/threads_GCP.git
+- cd threads_GCP
+- pip install -r requirements.txt
 
-how keywords cluster
+# 📝 Configuration
 
-model embedding quality over time<br />
-<br />
+Create a .env file:
 
-***✅ Prerequisites***
+**THREADS_USERNAME="your_username"
+THREADS_PASSWORD="your_password"
+BUCKET_NAME="your_gcs_bucket"
+GCP_CREDENTIALS="/path/to/credentials.json"**
 
-You will need:
 
-Python 3.x
+(BigQuery settings are configured in the visualization script.)
 
-A Google Cloud Platform (GCP) project
+# ▶️ Usage
 
-A GCS bucket
 
-A Google Service Account JSON credentials file
-
-A working Threads account (for scraping)<br />
-<br />
-
-***⚙️ Installation***
-
-Clone the repository:
-
-git clone https://github.com/kimarkim/threads_GCP.git
-cd threads_GCP
-
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-
-Included packages:
-
-functions-framework
-
-google-cloud-storage
-
-selenium
-
-beautifulsoup4
-
-umap-learn
-
-scikit-learn
-
-numpy<br />
-<br />
-
-***📝 Configuration***
-
-Create a .env file in the root of the project:
-
-THREADS_USERNAME="your_threads_username"
-THREADS_PASSWORD="your_threads_password"
-BUCKET_NAME="your_gcs_bucket_name"
-GCP_CREDENTIALS="/path/to/your/gcp-credentials.json"
-
-
-(For visualization: BigQuery config is handled in the script.)
-
-▶️ Usage
-1. Run the Scraper
+**1. Run the Scraper**
 python main.py
 
 
-The scraper will:
+**This will:**
 
-Log in to Threads
+- Log in to Threads
 
-Loop through TARGET_KEYWORD
+- Iterate through keywords
 
-Scrape up to TARGET_POSTS_NUM posts
+- Scrape posts
 
-Upload a .jsonl file to your GCS bucket
+- Upload .jsonl results to GCS
 
-Close the session
+**2. Run Embedding Visualization**
 
-2. Run the Embedding Visualization
+
 python visualization_emb.py
 
 
-This will:
+**This will:**
 
-Query embeddings from BigQuery
+- Query embeddings from BigQuery
 
-Perform PCA + UMAP
+- Perform PCA + UMAP
 
-Generate plots
+- Generate visual plots (optional save)
 
-Optionally save visualization outputs<br />
-<br />
+# 📁 Project Structure
 
-***📁 Project Structure***
+
 threads_GCP/
- ├── main.py                # Scraper logic
- ├── visualization_emb.py   # PCA+UMAP visualization pipeline
- ├── requirements.txt       # Python dependencies
- ├── README.md              # Project documentation
+ ├── main.py                # Scraper
+ ├── visualization_emb.py   # PCA + UMAP workflow
+ ├── requirements.txt       
+ ├── README.md
  ├── utils/                 # Helper modules
- └── data/                  # Temporary storage / artifacts<br />
-<br />
+ └── data/                  # Temporary artifacts
 
-***📄 License***
+# 📄 License
 
-This project is licensed under the Apache License 2.0.
-See the LICENSE file for details.<br />
-<br />
-***⚠️ Disclaimer***
+Apache License 2.0. See LICENSE for details.
 
-This tool is intended for educational and research purposes.
-Please:
+# ⚠️ Disclaimer
 
-Respect the Terms of Service of Threads
-
-Avoid aggressive scraping patterns
-
-Do not misuse the tool
-
-The author assumes no responsibility for improper or unethical usage.
+- This project is for research and educational use.
+- Please respect Threads' Terms of Service and avoid harmful or abusive scraping.
