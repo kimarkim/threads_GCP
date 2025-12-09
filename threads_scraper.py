@@ -221,7 +221,7 @@ class ThreadsScraper:
 
         # Create individual post objects
         posts_data = []
-        for post_text in enumerate(final_data):
+        for post_text in final_data:
             post_id = hashlib.sha256(f"{keyword}_{post_text}".encode('utf-8')).hexdigest()
             posts_data.append({
                 'id': post_id,

@@ -13,7 +13,7 @@ class Data_Cleanser:
   def cleanse_data(self, df):
 
     # drop duplicate posts
-    df.drop_duplicates(subset=["id"])
+    df = df.drop_duplicates(subset=["id"])
 
     # Remove "Translate1/2" artifacts
     df["post"] = df["post"].str.replace("Translate1/2", "", regex=False)
