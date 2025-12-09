@@ -1,6 +1,8 @@
 # 🚀 Threads Keyword Scraper + Embedding Visualization (GCP Enabled)
 
 - A Python system for scraping Threads posts by keyword, storing results in Google Cloud Storage, and visualizing text embeddings using PCA + UMAP for clustering and qualitative analysis.
+
+
 - Built for reliability, human-like automation, and seamless GCP integration.
 
 # ✨ Features
@@ -57,7 +59,7 @@
 
 # 📊 Embedding Visualization (PCA + UMAP)
 
-- visualization_emb.py provides a complete embedding analysis workflow:
+**visualization_emb.py provides a complete embedding analysis workflow:**
 
 - Loads embeddings from BigQuery
 
