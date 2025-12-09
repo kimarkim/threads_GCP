@@ -6,6 +6,7 @@ class Data_Cleanser:
     self.website_drop = re.compile(r"http\S+|www\.\S+")
     self.at_drop = re.compile(r'^Replying to @.*')
     self.useless = re.compile(r'^[@._\s0-9]+$')
+    self.username_pattern = re.compile(r'^[a-zA-Z0-9_@.]+$')
     # minimum length of post
     self.min_length = min_length
 
@@ -23,6 +24,9 @@ class Data_Cleanser:
 
     # drop unusable posts
     df = df[~df["post"].str.fullmatch(self.useless, na=False)]
+
+    # drop username posts
+    df = df[~df["post"].str.fullmatch(self.username_pattern, na=False)]
 
     # drop posts that tag their account IDs
     df = df[~df["post"].str.fullmatch(self.at_drop, na=False)]
