@@ -5,3 +5,14 @@ numpy>=1.24.0
 python-dotenv
 webdriver-manager
 functions-framework>=3.4.0
+pandas
+scikit-learn
+umap-learn
+matplotlib
+hdbscan
+google-cloud-bigquery
+db-dtypes
+pandas
+python-dotenv
+langdetect
+pyarrow
