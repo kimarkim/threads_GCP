@@ -20,7 +20,7 @@ load_dotenv()
 USERNAME = os.environ.get('THREADS_USERNAME')
 PASSWORD = os.environ.get('THREADS_PASSWORD')
 TARGET_KEYWORD = ["韓国"]
-TARGET_POSTS_NUM = 500
+TARGET_POSTS_NUM = 1
 BUCKET_NAME = os.environ.get('BUCKET_NAME')
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.environ.get('GCP_CREDENTIALS')
@@ -76,12 +76,12 @@ def main():
                 # Clean the DataFrame
                 scraped_posts = cleanse.clean_all(scraped_posts_df)
 
-                # Success message
+                # Success/Error message
                 print(f"After cleaning, {len(scraped_posts)} posts remain for '{keyword}').")
-                
+
                 # Upload to GCS with properly formatted filename
                 scraped_date = datetime.datetime.now().strftime('%Y-%m-%d')
-                destination_file_name = f'jpn/threads_{keyword}_{scraped_date}.json'
+                destination_file_name = f'jpn/threads_{keyword}_{scraped_date}.parquet'
 
                 success = upload_file_gcs(
                     storage_client, 
