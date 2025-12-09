@@ -1,90 +1,131 @@
-**🚀 Threads Keyword Scraper for GCP**
-This project is a Python-based web scraper designed to extract posts from Threads based on a predefined list of keywords. It automates the process of logging in, searching for keywords, scrolling through results, and collecting post data. The scraped data is then processed and uploaded directly to a specified Google Cloud Storage (GCS) bucket in JSONL format.
+# 🚀 Threads Keyword Scraper + Embedding Visualization (GCP Enabled)
+- A Python system for scraping Threads posts by keyword, storing results in Google Cloud Storage, and visualizing text embeddings using PCA + UMAP for clustering and qualitative analysis.
 
-**✨ Key Features**
+- Built for reliability, human-like automation, and seamless GCP integration.
 
-**☁️ Google Cloud Integration: **
-Automatically uploads scraped data to a Google Cloud Storage bucket, formatted with the keyword and scrape date (e.g., jpn/threads_{keyword}_{date}.json).
+# 🛠️ Tech Stack
+- Python, Google Cloud Platform (GCS, BigQuery), Selenium, BeautifulSoup4, Pandas, NumPy, Scikit-learn, UMAP, HDBSCAN, Matplotlib, LangDetect, PyArrow.
 
-**🛡️ Advanced Anti-Detection: Implements several techniques to avoid being blocked:**
+# ✨ Features
 
-- Uses a pool of random User-Agents to mimic different browsers.
+**☁️ Google Cloud Storage Integration**
 
-- Disables browser automation flags and hides the navigator.webdriver property.
+- Automatically uploads scraped posts to GCS as .parquet:
 
-- Sets a random browser viewport size for each session.
+- jpn/threads_{keyword}_{date}.parquet
 
+# 🛡️ Anti-Detection Scraping
+- Designed to mimic real browser behavior:
 
-**🤖 Human-Like Interaction: Simulates human behavior to appear less like a bot:**
+- Randomized User-Agent pool
 
-- Introduces random delays between actions like navigation, typing, and clicking.
+- Selenium automation flags disabled
 
-- Types text character-by-character with randomized delays.
-
-- Executes varied and "natural" scrolling patterns, including random pauses to simulate reading or distraction.
-
-
-**🎯 Targeted Keyword Scraping:** Iterates through a list of specified keywords (韓国, Kポ, 韓国旅行, etc.) to collect relevant posts.
+- navigator.webdriver suppressed
 
 
-**🛠️ Robust Scraping Process: **Uses BeautifulSoup for parsing HTML and Selenium for browser automation to reliably extract post text.
+**Variable viewport sizes**
 
+Natural mouse movement and timing
 
-**📄 Data Formatting: **Each post is structured into a JSON object with a unique ID (hashed from its content), genre (keyword), the post content, acquisition date, and an "in_out" field.
+# 🤖 Human-Like Interaction
+- Randomized delays for navigation, typing, and clicking
 
-**✅ Prerequisites**
-Before you begin, ensure you have the following:
+- Character-by-character text entry
 
-Python 3.x
+- Natural scrolling with pauses
 
-- A Google Cloud Platform (GCP) account with a project set up.
+# 🎯 Keyword-Based Scraping
+- Scrapes posts for a customizable keyword list (e.g., 韓国, K-POP, 韓国旅行).
 
-- A GCS bucket created within your GCP project.
+**For each keyword, the scraper:**
 
-- GCP credentials (a service account key file in JSON format).
+- Searches Threads
 
-- A Threads account.
+- Loads more results by scrolling
 
-**⚙️ Installation**
-Clone the repository:
+- Captures up to TARGET_POSTS_NUM posts (default: 100)
 
-git clone [https://github.com/kimarkim/threads_gcp.git](https://github.com/kimarkim/threads_gcp.git)
-cd threads_gcp
+- Each post is saved as structured Parquet data with the following schema:
 
-Install the required dependencies:
+**{ "id": "<hashed-id>", "keyword": "<keyword>", "post": "<text>", "acquire_date": "<date>", "language": "<detected-lang>" }**
 
-pip install -r requirements.txt
+# 📊 Embedding Visualization (PCA + UMAP)
+**visualization_emb.py provides a complete embedding analysis workflow:**
 
-The necessary packages are: functions-framework, google-cloud-storage, selenium, beautifulsoup4, and numpy.
+- Loads embeddings from BigQuery
 
-**📝 Configuration**
-The script uses environment variables for configuration. Create a .env file in the root directory of the project and add the following variables:
+- Applies PCA for initial dimensionality reduction
 
-THREADS_USERNAME="your_threads_username"
-THREADS_PASSWORD="your_threads_password"
-BUCKET_NAME="your_gcs_bucket_name"
-GCP_CREDENTIALS="/path/to/your/gcp-credentials.json"
+- Applies UMAP for 2D visualization
 
-**▶️ Usage**
-Once the installation and configuration steps are complete, you can run the scraper using the following command:
+**Generates plots for:**
 
-python main.py
+- Cluster structure
 
-- The script will perform the following actions:
+- Outlier detection
 
-- Log in to Threads using the provided credentials.
+- Keyword similarity
 
-- For each keyword in TARGET_KEYWORD:
+- Model drift analysis
 
-- Navigate to the search results page.
+**Useful for understanding semantic patterns and monitoring embedding quality.**
 
-- Scrape up to TARGET_POSTS_NUM (default is 100) posts.
+# ✅ Requirements
+- Python 3.x
 
-- Upload the collected data as a .jsonl file to your GCS bucket.
+- Google Cloud project + GCS bucket
 
-- Close the browser session upon completion.
+- Service Account JSON key
 
-📄 License
-This project is licensed under the Apache License, Version 2.0. See the LICENSE file for more details.
+- Threads account (for login)
 
-⚠️ Disclaimer: This tool is intended for educational and data collection purposes. Please be responsible and respect the terms of service of Threads. The developers of this tool are not responsible for any misuse.
+# ⚙️ Installation
+- git clone https://github.com/kimarkim/threads_GCP.git
+
+- cd threads_GCP
+
+- pip install -r requirements.txt
+
+# 📝 Configuration
+**Create a .env file:**
+
+THREADS_USERNAME="your_username" THREADS_PASSWORD="your_password" BUCKET_NAME="your_gcs_bucket" GCP_CREDENTIALS="/path/to/credentials.json" PROJECT_ID="your_gcp_project_id" DATASET="your_bigquery_dataset" TABLE="your_bigquery_table"
+
+# ▶️ Usage
+**1. Run the Scraper python main.py**
+
+This will:
+
+- Log in to Threads
+
+- Iterate through keywords
+
+- Scrape posts
+
+- Upload .parquet results to GCS
+
+**2. Run Embedding Visualization**
+
+- python visualization_emb.py
+
+This will:
+
+- Query embeddings from BigQuery
+
+- Perform PCA + UMAP
+
+- Generate visual plots (optional save)
+
+# 📁 Project Structure
+threads_GCP/ ├── main.py # Scraper orchestration ├── threads_scraper.py # Selenium scraper logic ├── clean_data.py # Data cleaning logic ├── visualization_emb.py # PCA + UMAP workflow ├── requirements.txt
+
+├── README.md
+
+# 📄 License
+Apache License 2.0. See LICENSE for details.
+
+# ⚠️ Disclaimer
+This project is for research and educational use.
+
+Please respect Threads' Terms of Service and avoid harmful or abusive scraping.
